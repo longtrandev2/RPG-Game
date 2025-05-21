@@ -1,44 +1,34 @@
 package com.myteam.rpgsurvivor;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.myteam.rpgsurvivor.screens.MainMenuScreen;
-import com.myteam.rpgsurvivor.screens.MapScreen;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class Main extends Game {
-    private MapScreen map;
-    private MainMenuScreen mainMenuScreen;
+public class Main extends ApplicationAdapter {
+    private SpriteBatch batch;
+    private Texture image;
 
     @Override
     public void create() {
-        // Khởi tạo camera
-       //map = new MapScreen();
-       setScreen(new MainMenuScreen(this));
-
-
+        batch = new SpriteBatch();
+        image = new Texture("libgdx.png");
     }
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // Cập nhật camera
-        //map.update();
-        //map.render();
-        //mainMenuScreen.render(Gdx.graphics.getDeltaTime());
-        super.render();
-
+        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+        batch.begin();
+        batch.draw(image, 140, 210);
+        batch.end();
     }
 
     @Override
     public void dispose() {
-        //map.dispose();
-        mainMenuScreen.dispose();
-
+        batch.dispose();
+        image.dispose();
     }
 }
